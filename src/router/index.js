@@ -3,12 +3,16 @@ import Home from '../views/Home.vue';
 import BookTickets from '../views/BookTickets.vue';
 import About from '../views/About.vue';
 import Contact from '../views/Contact.vue';
+import SeatSelect from '../components/SeatSelection.vue'
+import Checkout from '../components/Checkout.vue'
 
 const routes = [
   { path: '/', name: 'Home', component: Home },
   { path: '/book-tickets', name: 'BookTickets', component: BookTickets },
   { path: '/about', name: 'About', component: About },
   { path: '/contact', name: 'Contact', component: Contact },
+  { path: '/seatselect', name: 'SeatSelection', component: SeatSelect },
+  { path: '/checkout', name: 'Checkout', component: Checkout },
 ];
 
 const router = createRouter({
