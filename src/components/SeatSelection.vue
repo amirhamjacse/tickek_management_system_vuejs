@@ -67,7 +67,8 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" @click="goToCheckoutPage">Confirm</button>
+              <button type="button" class="btn btn-primary" @click="goToTripDetailsPage">Confirm</button>
+              <!-- <button type="button" class="btn btn-primary" @click="goToTripDetailsPage">Confirm</button> -->
             </div>
           </div>
         </div>
@@ -124,6 +125,10 @@
       goToCheckoutPage() {
         // Navigate to the checkout page
         this.$router.push({ name: 'Checkout' });  // Assuming you have a Checkout route defined
+      },
+      goToTripDetailsPage() {
+        // Navigate to the checkout page
+        this.$router.push({ name: 'tripdetails' });  // Assuming you have a Checkout route defined
       },
   
       // Method to confirm the seat selection and go to checkout
