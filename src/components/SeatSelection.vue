@@ -99,7 +99,14 @@
       selectSeat(side, pairIndex, seatIndex) {
         const seats = side === 'left' ? this.leftSeatPairs : this.rightSeatPairs;
         const seat = seats[pairIndex][seatIndex];
-        // Only allow selection if the seat is available
+  
+        // If the seat is booked, show an alert
+        if (seat.status === 'booked') {
+          alert(`Sorry, Seat ${side === 'left' ? 'A' : 'B'}${pairIndex * 2 + seatIndex + 1} is already booked.`);
+          return;
+        }
+  
+        // If the seat is available and not booked, select the seat
         if (seat.status === 'available') {
           seat.status = 'selected';  // Mark seat as selected
           this.selectedSeat = `${side === 'left' ? 'Left' : 'Right'} Seat ${pairIndex * 2 + seatIndex + 1}`;
@@ -115,9 +122,18 @@
   
       // Redirect to the checkout page
       goToCheckoutPage() {
+        // Navigate to the checkout page
         this.$router.push({ name: 'Checkout' });  // Assuming you have a Checkout route defined
       },
-    },
+  
+      // Method to confirm the seat selection and go to checkout
+      confirmSelection() {
+        const confirmation = confirm(`You have selected: ${this.selectedSeat}. Do you want to proceed to checkout?`);
+        if (confirmation) {
+          this.goToCheckoutPage();
+        }
+      }
+    }
   };
   </script>
   
