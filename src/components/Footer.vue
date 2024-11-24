@@ -14,7 +14,7 @@
           <h5 class="fw-bold text-white">Quick Links</h5>
           <ul class="list-unstyled">
             <li><router-link to="/" class="text-white">Home</router-link></li>
-            <li><router-link to="/tickets" class="text-white">Book Tickets</router-link></li>
+            <li><router-link to="/book-tickets" class="text-white">Book Tickets</router-link></li>
             <li><router-link to="/about" class="text-white">About</router-link></li>
             <li><router-link to="/contact" class="text-white">Contact</router-link></li>
           </ul>
