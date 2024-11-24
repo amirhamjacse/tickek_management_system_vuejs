@@ -1,7 +1,7 @@
 <template>
     <div class="checkout-container">
       <h2 class="text-center">Checkout</h2>
-      <p>Thank you for selecting your seat! Please provide your details and proceed to payment.</p>
+      <p class="text-center">Thank you for selecting your seat! Please provide your details and proceed to payment.</p>
   
       <!-- Passenger Information Form -->
       <div class="passenger-info-form">
@@ -81,7 +81,7 @@
       // Method to generate a random ticket number
       generateTicketNumber() {
         const randomNumber = Math.floor(Math.random() * 1000000);
-        return `TICKET-${randomNumber}`;
+        return `TICKET ID-${randomNumber}`;
       },
   
       // Method to handle form submission
