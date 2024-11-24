@@ -1,8 +1,8 @@
 <template>
     <header class="bg-gradient-green text-white">
       <nav class="navbar navbar-expand-lg navbar-light container py-3">
-        <a class="navbar-brand fw-bold fs-3 d-flex align-items-center" href="#">
-          <i class="bi bi-airplane-engines me-2"></i>TicketMaster
+        <a class="navbar-brand fw-bold fs-3 d-flex align-items-center" href="/">
+          <i class="bi bi-bus-front me-2"> </i>TicketMaster
         </a>
   
         <!-- Toggle button for mobile view -->
@@ -25,7 +25,7 @@
               <router-link class="nav-link" to="/" active-class="active">Home</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" to="/tickets" active-class="active">Book Tickets</router-link>
+              <router-link class="nav-link" to="/book-tickets" active-class="active">Book Tickets</router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link" to="/about" active-class="active">About</router-link>
