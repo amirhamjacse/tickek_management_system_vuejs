@@ -52,6 +52,10 @@
       <div class="text-center mt-4">
         <button class="btn btn-primary" @click="confirmSelection">Confirm Selection</button>
       </div>
+      <div class="">
+
+        <button type="button" class="btn btn-primary" @click="goToTripDetailsPage">Trip Details</button>
+      </div>
   
       <!-- Modal Popup for Selected Seat -->
       <div class="modal fade" id="seatSelectionModal" tabindex="-1" aria-labelledby="seatSelectionModalLabel" aria-hidden="true">
@@ -67,7 +71,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary" @click="goToTripDetailsPage">Confirm</button>
+           
               <!-- <button type="button" class="btn btn-primary" @click="goToTripDetailsPage">Confirm</button> -->
             </div>
           </div>
@@ -128,7 +132,7 @@
       },
       goToTripDetailsPage() {
         // Navigate to the checkout page
-        this.$router.push({ name: 'tripdetails' });  // Assuming you have a Checkout route defined
+        this.$router.push({ name: 'TripDetails' });  // Assuming you have a Checkout route defined
       },
   
       // Method to confirm the seat selection and go to checkout
