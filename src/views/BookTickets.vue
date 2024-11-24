@@ -7,11 +7,23 @@
       <div class="row mb-3">
         <div class="col-md-6">
           <label for="fromDestination" class="form-label">From</label>
-          <input type="text" id="fromDestination" v-model="fromDestination" class="form-control" placeholder="Enter departure city" />
+          <input
+            type="text"
+            id="fromDestination"
+            v-model="fromDestination"
+            class="form-control"
+            placeholder="Enter departure city"
+          />
         </div>
         <div class="col-md-6">
           <label for="toDestination" class="form-label">To</label>
-          <input type="text" id="toDestination" v-model="toDestination" class="form-control" placeholder="Enter destination city" />
+          <input
+            type="text"
+            id="toDestination"
+            v-model="toDestination"
+            class="form-control"
+            placeholder="Enter destination city"
+          />
         </div>
       </div>
 
@@ -43,15 +55,34 @@
 
     <!-- Results Section -->
     <div v-if="busList.length > 0" class="mt-5">
-      <h3 class="text-center">Available Buses</h3>
-      <div class="row">
-        <div class="col-md-4" v-for="(bus, index) in busList" :key="index">
-          <div class="card mb-3">
-            <div class="card-body">
+      <div class="filter-sort d-flex justify-content-between align-items-center mb-3">
+        <h5>Available Buses</h5>
+        <div class="btn-group">
+          <button class="btn btn-outline-primary">Low to High</button>
+          <button class="btn btn-outline-primary">High to Low</button>
+        </div>
+      </div>
+
+      <div class="bus-cards">
+        <div class="card bus-card" v-for="(bus, index) in busList" :key="index">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
               <h5 class="card-title">{{ bus.name }}</h5>
-              <p class="card-text">Departure: {{ bus.departureTime }}</p>
-              <p class="card-text">Seats Available: {{ bus.availableSeats }}</p>
-              <button class="btn btn-success w-100" @click="bookBus(bus)">Book Now</button>
+              <span class="price">{{ bus.price }}</span>
+            </div>
+            <p class="card-text">
+              <strong>Departure:</strong> {{ bus.departureTime }}<br />
+              <strong>Duration:</strong> {{ bus.duration }}<br />
+              <strong>Seats:</strong> {{ bus.availableSeats }} Seats Available
+            </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <button class="btn btn-outline-secondary btn-sm">Cancellation Policy</button>
+                <button class="btn btn-outline-secondary btn-sm">Boarding Point</button>
+                <button class="btn btn-outline-secondary btn-sm">Dropping Point</button>
+                <button class="btn btn-outline-secondary btn-sm">Amenities</button>
+              </div>
+              <button class="btn btn-success" @click="Bookbus">Book Now</button>
             </div>
           </div>
         </div>
@@ -67,49 +98,80 @@
 
 <script>
 export default {
-  name: 'BookTickets',
+  name: "BookTickets",
   data() {
     return {
-      fromDestination: '',
-      toDestination: '',
-      departureDate: '',
-      returnDate: '',
-      transportType: 'bus',
+      fromDestination: "",
+      toDestination: "",
+      departureDate: "",
+      returnDate: "",
+      transportType: "bus",
       busList: [],
       searched: false,
     };
   },
   methods: {
     searchBuses() {
-      if (this.transportType === 'bus') {
+      if (this.transportType === "bus") {
         this.busList = [
-          { id: 1, name: 'Express Bus A', departureTime: '8:00 AM', availableSeats: 12, seats: this.generateSeats() },
-          { id: 2, name: 'Fast Bus B', departureTime: '10:30 AM', availableSeats: 8, seats: this.generateSeats() },
-          { id: 3, name: 'Comfort Bus C', departureTime: '1:00 PM', availableSeats: 5, seats: this.generateSeats() },
+          { id: 1, name: "Manik Express", departureTime: "01:00 PM", duration: "5h 0m", price: "৳800", availableSeats: 21 },
+          { id: 2, name: "Akota Transport", departureTime: "02:00 PM", duration: "5h 0m", price: "৳550", availableSeats: 40 },
+          { id: 3, name: "Hanif Enterprise", departureTime: "02:00 PM", duration: "8h 40m", price: "৳550", availableSeats: 34 },
+          { id: 4, name: "Orin Travels", departureTime: "02:15 PM", duration: "5h 15m", price: "৳550", availableSeats: 36 },
         ];
       }
       this.searched = true;
     },
-
-    // Function to generate seats dynamically for each bus
-    generateSeats() {
-      const seats = [];
-      for (let i = 1; i <= 20; i++) {
-        seats.push({
-          id: i,
-          status: Math.random() > 0.5 ? 'available' : 'booked', // Randomly assigning some seats as booked
-        });
-      }
-      return seats;
-    },
-
-    bookBus(bus) {
-      this.$router.push({ name: 'SeatSelection', params: { busId: bus.id, busName: bus.name, seats: bus.seats } });
-    },
+    Bookbus() {
+        // Navigate to the checkout page
+        this.$router.push({ name: 'SeatSelection' });  // Assuming you have a Checkout route defined
+      },
   },
 };
 </script>
 
 <style scoped>
-/* Same styling as before */
+.container {
+  font-family: Arial, sans-serif;
+}
+
+.filter-sort {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.bus-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.bus-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bus-card .card-body {
+  padding: 15px;
+}
+
+.card-title {
+  font-size: 1.2rem;
+}
+
+.price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #28a745;
+}
+
+.btn-sm {
+  font-size: 0.85rem;
+}
+
+.btn-success {
+  font-size: 1rem;
+  padding: 10px 20px;
+}
 </style>
